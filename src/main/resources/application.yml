@@ -1,0 +1,10 @@
+spring:
+
+  liquibase:
+    change-log: classpath:db/changelog/changelog.xml
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/university
+    username: user
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
