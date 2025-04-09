@@ -4,7 +4,7 @@ spring:
     change-log: classpath:db/changelog/changelog.xml
 
   datasource:
-    url: jdbc:mysql://localhost:3306/university
+    url: jdbc:mysql://localhost:3306/university?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: user
     password: password
-    driver-class-name: com.mysql.jdbc.Driver
+
