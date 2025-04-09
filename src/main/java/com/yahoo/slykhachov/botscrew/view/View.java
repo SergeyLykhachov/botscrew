@@ -26,19 +26,16 @@ import org.springframework.stereotype.Component;
 public class View extends JPanel implements Observer {
 
     private static final long serialVersionUID = 1L;
-    private static Logger LOGGER = LoggerFactory.getLogger(View.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(View.class);
     private static final int WIDTH = 600;
     private static final int HEIGHT = 450;
-    private WorkPanel workPanel;
-    private Model model;
+    private final WorkPanel workPanel;
 
     public View(Model model) {
-        this.model = model;
-        this.model.registerObserver(this);
+        model.registerObserver(this);
         this.workPanel = new WorkPanel(model);
 
         try {
-            System.setProperty("java.awt.headless", "false");
             SwingUtilities.invokeLater(
                 this::initSwing
             );
@@ -93,7 +90,8 @@ public class View extends JPanel implements Observer {
     @Component
     private static class WorkPanel extends JPanel {
         private static final long serialVersionUID = 1L;
-        private JTabbedPane tabbedPane;
+        private final JTabbedPane tabbedPane;
+
         WorkPanel(Model model) {
             this.setLayout(new GridLayout(1, 1));
             this.tabbedPane = new JTabbedPane();

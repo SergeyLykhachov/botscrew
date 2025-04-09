@@ -20,21 +20,25 @@ import com.yahoo.slykhachov.botscrew.util.Updatable;
 
 public class Question1Panel extends JPanel implements Updatable {
     private static final long serialVersionUID = 1L;
-    private static Logger LOGGER = LoggerFactory.getLogger(Question1Panel.class);
-    private AnswerPanel answerPanel;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Question1Panel.class);
+    private final AnswerPanel answerPanel;
     private String departmentName;
+
     Question1Panel(Model model) {
         this.setLayout(new GridLayout(2, 1));
         this.answerPanel = new AnswerPanel();
         this.add(new InquiryPanel(model, this));
         this.add(answerPanel);
     }
+
     private void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
+
     private String getDepartmentName() {
         return this.departmentName;
     }
+
     private static class InquiryPanel extends JPanel {
         private static final long serialVersionUID = 1L;
         static final String question;
@@ -49,8 +53,10 @@ public class Question1Panel extends JPanel implements Updatable {
                 + "WHERE department_name = ?"
                 + ");";
         }
-        private Model model;
-        private JTextField textField;
+
+        private final Model model;
+        private final JTextField textField;
+
         InquiryPanel(Model model, Question1Panel q1p) {
             this.model = model;
             JLabel label = new JLabel();
@@ -77,9 +83,11 @@ public class Question1Panel extends JPanel implements Updatable {
             );
         }
     }
+
     private static class AnswerPanel extends JPanel {
         private static final long serialVersionUID = 1L;
-        private JLabel label;
+        private final JLabel label;
+
         AnswerPanel() {
             this.label = new JLabel();
             this.label.setText("Answer:");
@@ -91,17 +99,20 @@ public class Question1Panel extends JPanel implements Updatable {
                 )
             );
         }
+
         void setAnswer(String... params) {
             String answer = "<html>Answer:<br><br>Head of "
                 + params[0] + " department is "
                 + params[1] + " " + params[2] + "</html>";
             this.label.setText(answer);
         }
+
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
         }
     }
+
     @Override
     public void post(ResultSet resultSet) {
         String firstName = "UNDEFINED";

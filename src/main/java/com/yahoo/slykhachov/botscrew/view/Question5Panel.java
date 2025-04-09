@@ -21,20 +21,24 @@ import com.yahoo.slykhachov.botscrew.util.Updatable;
 
 public class Question5Panel extends JPanel implements Updatable {
     private static final long serialVersionUID = 1L;
-    private static Logger LOGGER = LoggerFactory.getLogger(Question5Panel.class);
-    private AnswerPanel answerPanel;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Question5Panel.class);
+    private final AnswerPanel answerPanel;
     private String template;
+
     Question5Panel(Model model) {
         this.answerPanel = new AnswerPanel();
         this.add(new InquiryPanel(model, this), BorderLayout.NORTH);
         this.add(answerPanel, BorderLayout.CENTER);
     }
+
     private void setTemplate(String template) {
         this.template = template;
     }
+
     private String getTemplate() {
         return this.template;
     }
+
     private static class InquiryPanel extends JPanel {
         private static final long serialVersionUID = 1L;
         static final String question;
@@ -45,8 +49,9 @@ public class Question5Panel extends JPanel implements Updatable {
                 + "FROM lector "
                 + "WHERE first_name LIKE ? OR last_name LIKE ?";
         }
-        private Model model;
-        private JTextField textField;
+        private final Model model;
+        private final JTextField textField;
+
         InquiryPanel(Model model, Question5Panel q5p) {
             this.model = model;
             JLabel label = new JLabel();
@@ -68,6 +73,7 @@ public class Question5Panel extends JPanel implements Updatable {
             this.add(button);
         }
     }
+
     private static class AnswerPanel extends JPanel {
         private static final long serialVersionUID = 1L;
         private DefaultListModel<String> nameListModel;
@@ -85,11 +91,13 @@ public class Question5Panel extends JPanel implements Updatable {
             listContainer.add(new JScrollPane(nameList), BorderLayout.CENTER);
             this.add(listContainer, BorderLayout.CENTER);
         }
+
         void setAnswer(List<String> list) {
             this.nameListModel.clear();
             list.forEach(this.nameListModel::addElement);
         }
     }
+
     @Override
     public void post(ResultSet resultSet) {
         List<String> list = new ArrayList<>();
