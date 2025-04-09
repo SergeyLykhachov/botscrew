@@ -76,7 +76,8 @@ public class Question5Panel extends JPanel implements Updatable {
 
     private static class AnswerPanel extends JPanel {
         private static final long serialVersionUID = 1L;
-        private DefaultListModel<String> nameListModel;
+        private final DefaultListModel<String> nameListModel;
+
         AnswerPanel() {
             JLabel label = new JLabel();
             label.setText("Answer:");

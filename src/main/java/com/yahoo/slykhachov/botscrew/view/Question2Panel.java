@@ -20,8 +20,8 @@ import com.yahoo.slykhachov.botscrew.util.Updatable;
 
 public class Question2Panel extends JPanel implements Updatable {
     private static final long serialVersionUID = 1L;
-    private static Logger LOGGER = LoggerFactory.getLogger(Question2Panel.class);
-    private AnswerPanel answerPanel;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Question2Panel.class);
+    private final AnswerPanel answerPanel;
     private String departmentName;
 
     Question2Panel(Model model) {
