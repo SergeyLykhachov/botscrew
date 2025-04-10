@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Model implements Subject {
-    private static Logger LOGGER = LoggerFactory.getLogger(Model.class);
-    private DBPool dataSource;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Model.class);
+    private final DBPool dataSource;
     private Observer observer;
     private ResultSet resultSet;
 
@@ -65,6 +65,7 @@ public class Model implements Subject {
     public void notifyObserver() {
         this.observer.update(this.resultSet);
     }
+
     private static String extractSqlFromPreparedStatement(PreparedStatement ps) {
         return Stream.of(ps.toString().split("[:]"))
             .skip(1)
