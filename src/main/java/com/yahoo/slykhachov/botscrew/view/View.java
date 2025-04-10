@@ -87,7 +87,6 @@ public class View extends JPanel implements Observer {
 
     }
 
-    @Component
     private static class WorkPanel extends JPanel {
         private static final long serialVersionUID = 1L;
         private final JTabbedPane tabbedPane;
